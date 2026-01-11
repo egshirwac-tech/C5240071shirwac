@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Hub - Shirwac</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        body { display: flex; background: #f0f2f5; min-height: 100vh; }
+
+        /* Sidebar Styling */
+        .sidebar { 
+            width: 260px; background: #1a1a2e; color: white; 
+            position: fixed; height: 100vh; padding: 25px 15px; z-index: 1000;
+        }
+        .sidebar h2 { text-align: center; color: #4cc9f0; margin-bottom: 30px; border-bottom: 1px solid #303056; padding-bottom: 10px; }
+        .sidebar ul { list-style: none; }
+        .sidebar ul li { 
+            padding: 15px 20px; border-radius: 8px; margin-bottom: 10px;
+            cursor: pointer; transition: 0.3s; display: flex; align-items: center;
+        }
+        .sidebar ul li i { margin-right: 15px; width: 20px; text-align: center; }
+        .sidebar ul li:hover { background: #303056; }
+        .sidebar ul li.active-link { background: #4361ee; color: white; font-weight: bold; }
+
+        /* Content Area */
+        .main-content { margin-left: 260px; padding: 40px; width: calc(100% - 260px); }
+        .page-section { display: none; animation: fadeIn 0.4s ease; }
+        .active { display: block !important; }
+
+        /* Chapters Layout */
+        .chapter-card { background: white; padding: 30px; margin-bottom: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .example-item { border-left: 4px solid #4361ee; background: #f8f9fa; padding: 15px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        pre { background: #282c34; color: #abb2bf; padding: 15px; border-radius: 6px; overflow-x: auto; margin: 10px 0; font-size: 14px; }
+        .run-btn { background: #4361ee; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .run-btn:hover { background: #3a0ca3; }
+        .output-box { margin-top: 10px; padding: 10px; background: #e7f3ff; border-radius: 4px; font-family: monospace; font-weight: bold; color: #1e40af; }
+        .dom-preview { padding: 10px; border: 1px dashed #ccc; margin-bottom: 10px; background: #fff; }
+
+        /* About & Info */
+        .info-container { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .contact-info strong { color: #4361ee; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        footer { text-align: center; padding: 30px; color: #666; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <h2>JS HUB</h2>
+        <ul>
+            <li id="li-home" onclick="showPage('home')" class="active-link"><i class="fas fa-home"></i> Home</li>
+            <li id="li-chapters" onclick="showPage('chapters')"><i class="fas fa-layer-group"></i> All Chapters</li>
+            <li id="li-about" onclick="showPage('about')"><i class="fas fa-user-circle"></i> About Me</li>
+            <li id="li-contact" onclick="showPage('contact')"><i class="fas fa-envelope"></i> Contact</li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <section id="home" class="page-section active">
+            <h1>JavaScript Student Portal</h1>
+            <div style="margin-top: 30px; background: #e0e7ff; padding: 25px; border-radius: 12px; border-right: 8px solid #4361ee;">
+                <p style="font-size: 20px; margin-bottom: 10px;"><strong>Ardayga:</strong> Shirwac</p>
+                <p style="font-size: 20px; margin-bottom: 10px;"><strong>Macallinka:</strong> Ustaad Jamila</p>
+                <p style="font-size: 20px;"><strong>Maadada:</strong> JavaScript (DOM & Events)</p>
+            </div>
+            <p style="margin-top: 20px; line-height: 1.6;">Ku soo dhawaaw Shirwac. Boggan waxaad ku diyaarisay dhamaan casharadii aad ka baratay Chapters 7, 8, iyo 9. Isticmaal menu-ka bidixda si aad u gasho tusaalooyinka.</p>
+        </section>
+
+        <section id="chapters" class="page-section">
+            <h1 style="margin-bottom: 20px;">Practical Code Examples</h1>
+            <div id="chapters-container"></div>
+        </section>
+
+        <section id="about" class="page-section">
+            <div class="info-container">
+                <h1>About Me</h1>
+                <p style="margin: 15px 0;">Magacaygu waa <strong>Shirwac</strong>. Waxaan ahay arday baranaya dhismaha mareegaha, gaar ahaan JavaScript.</p>
+                <p><strong>Tel:</strong> 617434719</p>
+                <p><strong>Dhigaha Maadada:</strong> Ustaad Jamila</p>
+                <hr style="margin: 20px 0;">
+                <h3>Resources & Inspiration</h3>
+                <p>Website-yadan hoose waxay u egyihiin qaabka aan u dhisay portal-kayga:</p>
+                <a href="https://www.w3schools.com/js/" target="_blank" style="display:block; color: #4361ee; margin: 10px 0;">W3Schools JavaScript Tutorial</a>
+                <a href="https://javascript.info/" target="_blank" style="display:block; color: #4361ee; margin: 10px 0;">The Modern JS Tutorial</a>
+                <img src="shi.jpeg" alt="JS Hub Screenshot" width="100%">
+
+            </div>
+        </section>
+
+        <section id="contact" class="page-section">
+            <div class="info-container">
+                <h1>Contact Info</h1>
+                <p style="font-size: 18px;">Waxaad kala xiriiri kartaa <strong>Shirwac</strong> lambarkan:</p>
+                <h2 style="color: #4361ee; margin: 20px 0;">+252 617434719</h2>
+                <div style="max-width: 400px;">
+                    <input type="text" placeholder="Magacaaga" style="width:100%; padding:10px; margin-bottom:10px;">
+                    <textarea placeholder="Fariin" style="width:100%; padding:10px; margin-bottom:10px; height:100px;"></textarea>
+                    <button class="run-btn" onclick="alert('Waad ku mahadsantahay fariintaada Shirwac!')">Dir Fariinta</button>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 Shirwac | Developed for JavaScript Class | Ustaad Jamila</p>
+        </footer>
+    </div>
+
+    <script src="mainJs.js"></script>
+</body>
+</html>
